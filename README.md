@@ -50,7 +50,7 @@ No installation required.
 
 1. Clone this repository:
    
-   git clone https://github.com/YOUR_USERNAME/internet-is-broken.git
+   git clone https://github.com/metadore/internet-is-broken.git
 
 2. Open the project folder.
 
