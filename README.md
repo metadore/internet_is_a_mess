@@ -4,6 +4,8 @@ A website that absolutely should not exist.
 
 «Welcome to the wrong place. Stay anyway.»
 
+🌐 "ENTER THE CHAOS →" (https://internetmess.netlify.app/)
+
 A chaotic little experiment in anti-design, weird interactions, digital absurdity and questionable UI decisions.
 
 This isn't a portfolio. It isn't a productivity tool. It isn't trying to solve any problems.
@@ -46,11 +48,9 @@ No frameworks. No complicated setup. Just pure HTML chaos.
 
 🚀 RUN IT LOCALLY
 
-No installation required.
-
-1. Clone this repository:
+1. Clone the repository:
    
-   git clone https://github.com/metadore/internet-is-broken.git
+   git clone https://github.com/YOUR_USERNAME/internet-is-broken.git
 
 2. Open the project folder.
 
@@ -60,7 +60,11 @@ Congratulations. You've made a terrible decision.
 
 🌐 LIVE EXPERIMENT
 
-"ENTER THE CHAOS →" (YOUR_GITHUB_PAGES_URL)
+<p align="center">
+  <a href="https://internetmess.netlify.app/">
+    <img src="https://img.shields.io/badge/ENTER_THE_CHAOS-FF1493?style=for-the-badge&logo=netlify&logoColor=white" alt="Enter the chaos"/>
+  </a>
+</p>Live: https://internetmess.netlify.app/
 
 🎨 DESIGN PHILOSOPHY
 
