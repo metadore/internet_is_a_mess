@@ -1,0 +1,445 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Cursed Playground 98</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Comic+Neue:wght@700&family=VT323&family=Press+Start+2P&family=Bungee+Shade&family=Pacifico&family=Creepster&display=swap">
+<style>
+/* layout: a stack of mismatched slabs on a checkerboard, a fixed control strip on top, a fake desktop in the middle */
+:root{--bg:#ffee00;--bg2:#ffffff;--fg:#0a0a0a;--a:#ff00c8;--b:#00e5ff;--c:#2b00ff;
+--disp:'Rubik Mono One',Impact,sans-serif;--body:'Comic Neue','Comic Sans MS',cursive;--pix:'VT323','Courier New',monospace;--arc:'Press Start 2P','Courier New',monospace;--ls:0em;--sk:0deg}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;background-color:var(--bg);background-image:linear-gradient(45deg,var(--a) 25%,transparent 25%,transparent 75%,var(--a) 75%),linear-gradient(45deg,var(--a) 25%,transparent 25%,transparent 75%,var(--a) 75%);background-size:48px 48px;background-position:0 0,24px 24px;color:var(--fg);font-family:var(--body);font-size:18px;font-weight:700;line-height:1.35;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0;overflow-x:hidden}
+body.cc,body.cc *{cursor:none!important}
+button{font:inherit;color:inherit}
+#bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0;background:var(--fg);margin:0 -16px;padding-left:16px;padding-right:16px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--fg)}
+#bar .tag{font-family:var(--pix);color:var(--b);font-size:22px;margin-right:auto}
+.tb{font-family:var(--pix);font-size:20px;background:#c0c0c0;border:3px outset #fff;padding:2px 10px;color:#000;cursor:pointer}
+.tb:active{border-style:inset}
+.tb.on{background:var(--b)}
+#stage{display:flex;flex-direction:column;gap:44px;padding-block:36px 80px;max-width:1100px;margin:0 auto;font-family:var(--body);letter-spacing:var(--ls)}
+.sec{position:relative;border:6px solid var(--fg);background:var(--bg2);box-shadow:12px 12px 0 var(--fg);padding:20px;min-width:0}
+.sec:nth-child(odd){rotate:-.7deg}.sec:nth-child(even){rotate:.5deg}
+.sec.s1{background:var(--b)}.sec.s2{background:var(--a)}.sec.s3{background:#c0c0c0}.sec.s4{background:var(--c);color:#fff}
+.big{font-family:var(--disp);font-size:clamp(34px,9vw,92px);line-height:.95;margin:0 0 12px;text-transform:uppercase;transform:skewX(var(--sk));overflow-wrap:anywhere}
+h2.big{font-size:clamp(26px,6vw,56px)}
+.pix{font-family:var(--pix);font-size:22px;font-weight:400}
+.note{font-family:var(--pix);font-weight:400;font-size:21px;margin:0 0 14px;max-width:62ch}
+.glitch{position:relative;display:inline-block}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;left:0;top:0;width:100%;overflow:hidden}
+.glitch::before{color:var(--a);animation:gl1 1.7s infinite steps(1)}.glitch::after{color:var(--b);animation:gl2 2.3s infinite steps(1)}
+@keyframes gl1{0%,100%{clip-path:inset(0 0 100% 0);transform:none}10%{clip-path:inset(10% 0 60% 0);transform:translate(-4px,1px)}40%{clip-path:inset(60% 0 10% 0);transform:translate(5px,0)}70%{clip-path:inset(30% 0 40% 0);transform:translate(-3px,-2px)}}
+@keyframes gl2{0%,100%{clip-path:inset(100% 0 0 0)}20%{clip-path:inset(50% 0 20% 0);transform:translate(4px,0)}60%{clip-path:inset(5% 0 80% 0);transform:translate(-5px,2px)}85%{clip-path:inset(70% 0 5% 0);transform:translate(3px,-1px)}}
+.marq{overflow:hidden;white-space:nowrap;border-block:4px solid var(--fg);background:var(--fg);color:var(--b);font-family:var(--pix);font-size:24px;font-weight:400;margin:10px -20px}
+.marq span{display:inline-block;padding-left:100%;animation:mq 16s linear infinite}
+@keyframes mq{to{transform:translateX(-100%)}}
+.btn{font-family:var(--disp);font-size:16px;text-transform:uppercase;padding:12px 16px;background:var(--a);color:#000;border:4px solid #000;box-shadow:5px 5px 0 #000;cursor:pointer;touch-action:manipulation}
+.btn:active{transform:translate(4px,4px);box-shadow:1px 1px 0 #000}
+.btn.alt{background:var(--b)}.btn.y{background:#ffee00}.btn.g{background:#39ff14}
+.btn:focus-visible,.tb:focus-visible,.icon:focus-visible{outline:4px dashed var(--c);outline-offset:3px}
+.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
+.cell{border:4px dashed var(--fg);padding:14px;flex:1 1 230px;min-width:0;background:rgba(255,255,255,.55)}
+.cell h3{font-family:var(--pix);font-size:26px;font-weight:400;margin:0 0 8px;text-transform:uppercase}
+#runbox{position:relative;height:150px;overflow:hidden;border:3px solid var(--fg);background:repeating-linear-gradient(90deg,#fff 0 12px,#eee 12px 24px)}
+#runbox .btn{position:absolute;left:10px;top:50px}
+.multi{display:flex;flex-wrap:wrap;gap:6px;max-height:190px;overflow:auto}
+.multi .btn{padding:6px 10px;font-size:12px}
+#desk{position:relative;height:640px;border:4px inset #fff;background:#008080 radial-gradient(circle at 70% 30%,#00b3b3,#008080 60%);overflow:hidden;touch-action:none}
+.icons{position:absolute;left:8px;top:8px;display:flex;flex-direction:column;gap:6px;z-index:1}
+.icon{width:84px;background:none;border:0;color:#fff;font-family:var(--pix);font-size:18px;font-weight:400;text-align:center;cursor:pointer;padding:2px;text-shadow:1px 1px #000}
+.icon i{display:block;font-style:normal;font-size:34px}
+.win{position:absolute;background:#c0c0c0;border:3px outset #fff;box-shadow:4px 4px 0 rgba(0,0,0,.5);color:#000;font-family:var(--pix);font-weight:400;font-size:20px;display:flex;flex-direction:column;max-width:calc(100% - 8px)}
+.win .tt{display:flex;align-items:center;gap:6px;background:linear-gradient(90deg,#000080,#1084d0);color:#fff;padding:2px 4px;cursor:grab;touch-action:none;user-select:none}
+.win .tt b{flex:1;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.win .x{width:22px;height:22px;line-height:16px;padding:0;background:#c0c0c0;border:2px outset #fff;font-family:var(--pix);cursor:pointer;color:#000}
+.win .bd{padding:10px;overflow:auto;min-height:0}
+.win .go{font-family:var(--pix);font-size:20px;background:#c0c0c0;border:3px outset #fff;padding:1px 12px;color:#000;cursor:pointer}
+.win .go:active{border-style:inset}
+.calc{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.calc .scr{grid-column:1/-1;background:#9fb;border:3px inset #fff;font-size:26px;text-align:right;padding:2px 8px;min-height:36px;overflow:hidden}
+.ie-page{background:#fff;border:3px inset #fff;padding:8px;min-height:130px}
+.addr{width:100%;font-family:var(--pix);font-size:20px;border:3px inset #fff;padding:1px 4px}
+.door-wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+#door{position:relative;width:170px;height:260px;perspective:700px;flex:none}
+#door .frame{position:absolute;inset:0;background:#000;border:10px solid #3b1f0b}
+#door .leaf{position:absolute;inset:0;background:repeating-linear-gradient(90deg,#7a4a21 0 14px,#6b3f1b 14px 28px);border:10px solid #3b1f0b;transform-origin:left center;cursor:pointer;display:block;padding:0}
+#door .leaf::after{content:"";position:absolute;right:14px;top:55%;width:18px;height:18px;border-radius:50%;background:gold;border:3px solid #7a5b00}
+#door .leaf::before{content:"?";position:absolute;left:50%;top:18%;translate:-50% 0;font-family:var(--disp);font-size:42px;color:#e8c27a}
+.fix{position:fixed;inset:0;z-index:200;overflow:hidden}
+.room{background:radial-gradient(circle at 50% 40%,#3a0066,#05001a 70%);color:#e6d4ff;font-family:'Pacifico',cursive}
+.room.logo{background:radial-gradient(circle at 50% 60%,#003b2f,#00110d 75%);color:#9cffd6;font-family:var(--pix)}
+.room canvas{position:absolute;inset:0;width:100%;height:100%}
+.room .msg{position:absolute;left:50%;bottom:12%;translate:-50% 0;width:min(90%,560px);text-align:center;font-size:clamp(20px,5vw,34px);text-shadow:0 0 12px #c070ff;pointer-events:none}
+.thing{position:absolute;font-size:clamp(34px,8vw,64px);background:none;border:0;cursor:pointer;animation:fl 6s ease-in-out infinite;filter:drop-shadow(0 0 10px #c070ff);padding:4px}
+@keyframes fl{50%{transform:translate(18px,-26px) rotate(12deg)}}
+.exit{position:absolute;right:max(12px,env(safe-area-inset-right,0px));top:max(12px,env(safe-area-inset-top,0px));z-index:3}
+.eye{position:absolute;width:10px;height:10px;border-radius:50%;background:#fff;border:0;opacity:.35;padding:0;cursor:pointer}
+#floaters{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
+#cur{position:fixed;left:0;top:0;z-index:300;pointer-events:none;font-size:30px;line-height:1;translate:-50% -50%}
+#cur span{display:block;animation:spin 2.2s linear infinite}
+#cur.walk span{animation:walk .35s ease-in-out infinite alternate}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes walk{from{transform:rotate(-14deg) scale(.7)}to{transform:rotate(14deg) scale(.7)}}
+.scroller{height:430px;overflow:auto;border:4px solid #fff;background:#111;color:#fff;padding:10px;display:flex;flex-direction:column;gap:14px}
+.nz{border:3px dotted var(--b);padding:10px;flex:none}
+.nz img{display:block;width:100%;max-width:300px;height:auto;border:3px solid #fff;margin-bottom:6px}
+.nz .lv{font-family:var(--pix);font-size:16px;color:#888;font-weight:400}
+.pop{position:fixed;z-index:120;width:min(260px,70vw);background:#c0c0c0;border:3px outset #fff;color:#000;font-family:var(--pix);font-weight:400;font-size:20px;box-shadow:5px 5px 0 #000}
+.pop .tt{background:linear-gradient(90deg,#800000,#ff4040);color:#fff;padding:2px 6px;display:flex;justify-content:space-between;gap:6px}
+.pop .bd{padding:8px}
+#sass{position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:110;max-width:min(320px,80vw);background:#fff;color:#000;border:4px solid #000;box-shadow:6px 6px 0 var(--a);padding:10px 12px;font-family:var(--body);font-size:17px;border-radius:18px 18px 18px 0}
+#toast{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:110;max-width:min(300px,70vw);background:var(--fg);color:var(--b);font-family:var(--pix);font-weight:400;font-size:20px;padding:8px 12px;border:3px solid var(--b)}
+#crash{position:fixed;inset:0;z-index:400;background:#0000aa;color:#fff;font-family:var(--pix);font-weight:400;font-size:clamp(18px,4vw,28px);padding:6vh 6vw}
+#crash .pb{height:22px;border:3px solid #fff;margin-top:20px}#crash .pb i{display:block;height:100%;background:#fff;width:0}
+#dram{position:fixed;inset:0;z-index:350;pointer-events:none;overflow:hidden}
+#dram .bar{position:absolute;left:0;width:100%;height:50.5%;background:#000}
+#dram .t{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-family:var(--disp);color:#ff0;font-size:clamp(28px,9vw,100px);text-transform:uppercase;padding:0 16px}
+.gem{width:56px;height:56px;border:4px solid #000;box-shadow:4px 4px 0 #000;cursor:pointer;padding:0}
+.hid{position:absolute;background:none;border:0;padding:2px;font-size:16px;opacity:.55;cursor:pointer;line-height:1}
+.hid:hover{opacity:1}
+.sec.konami{background:#000!important;color:#39ff14!important;border-color:#39ff14}
+body.k98{--bg:#000;--bg2:#001a00;--fg:#39ff14;--a:#003300;--b:#00aa22;--c:#004400}
+body.k98 .btn{color:#000}
+.stack{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+@media (max-width:640px){#desk{height:700px}.win{font-size:18px}.sec{padding:14px;box-shadow:7px 7px 0 var(--fg)}.marq{margin:10px -14px}}
+@media (prefers-reduced-motion:reduce){.glitch::before,.glitch::after,.marq span,.thing,#cur span{animation:none}}
+</style>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+const {useState,useEffect,useRef,useCallback,createContext,useContext}=React;
+const html=htm.bind(React.createElement);
+const R=(a,b)=>a+Math.random()*(b-a), RI=(a,b)=>Math.floor(R(a,b+1)), pick=a=>a[Math.floor(Math.random()*a.length)];
+const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const Bus={toast(){},say(){},popup(){},dramatic(){},party(){},openRoom(){},flip(){},found(){},konamiKey(){}};
+const Stats={clicks:0,moves:0,start:Date.now(),keys:0};
+const Snd={on:false,ctx:null,
+ beep(f,d=.08,type='square',v=.04){if(!this.on)return;try{if(!this.ctx)this.ctx=new(window.AudioContext||window.webkitAudioContext)();const c=this.ctx,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(c.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+d);o.stop(c.currentTime+d)}catch(e){}},
+ chord(){[262,330,392,523,659].forEach((f,i)=>setTimeout(()=>this.beep(f,.3,'triangle',.06),i*90))}};
+const PALS=[
+{bg:'#ffee00',bg2:'#ffffff',fg:'#0a0a0a',a:'#ff00c8',b:'#00e5ff',c:'#2b00ff'},
+{bg:'#00ff9c',bg2:'#fff0f8',fg:'#1a0033',a:'#ff3b00',b:'#ffd400',c:'#5200a3'},
+{bg:'#ff5ea8',bg2:'#e8ffee',fg:'#001a33',a:'#00d9ff',b:'#b6ff00',c:'#003c8f'},
+{bg:'#2c2cff',bg2:'#fffbe0',fg:'#000000',a:'#ffe600',b:'#ff4fa0',c:'#7a001f'},
+{bg:'#ff8a00',bg2:'#e6f7ff',fg:'#10002b',a:'#7cff00',b:'#ff00a8',c:'#240046'},
+{bg:'#c9a0ff',bg2:'#ffffff',fg:'#101010',a:'#ff5d00',b:'#00f0b5',c:'#1b0b5a'}];
+const FONTS=["'Rubik Mono One'","'Bungee Shade'","'Pacifico'","'Creepster'","'Press Start 2P'","'VT323'"];
+const BODYF=["'Comic Neue'","'VT323'","'Pacifico'","'Courier New'","Impact","'Times New Roman'"];
+const PERS=[
+{n:'NORMAL-ISH',f:"'Rubik Mono One'",tag:'welcome. nothing here is useful.',mq:'*** WELCOME TO THE LEAST HELPFUL WEBSITE ON EARTH *** BEST VIEWED IN NETSCAPE 4.0 *** YOU ARE VISITOR NUMBER 000,000,404 ***',sass:['Hands off the merchandise.','I am a website, not a stress ball.','Every click is logged in a notebook I keep.']},
+{n:'ANGRY GRANDMA',f:"'Pacifico'",tag:'in MY day a website sat quietly and did as it was told.',mq:'*** EAT SOMETHING *** WHO RAISED YOU *** TURN THAT MOUSE DOWN *** I MADE THIS PAGE FROM SCRATCH ***',sass:['Who raised you? Wolves?','Clicking, clicking, clicking. Have a biscuit.','I will turn this website around right now.']},
+{n:'PIRATE',f:"'Bungee Shade'",tag:'ahoy! ye have entered the bytes o the seven seas.',mq:'*** YARRR *** BEWARE THE CASCADING STYLE SHEETS *** X MARKS THE POPUP *** AVAST YE ***',sass:['Arrr, keelhaul that mouse!','Ye click like a sailor with no map.','Me parrot refuses to render.']},
+{n:'HAUNTED',f:"'Creepster'",tag:'the page was always here. so were you.',mq:'*** DO NOT LOOK BEHIND THE FOOTER *** THE SCROLLBAR IS BREATHING *** SOMETHING IN THE CSS ***',sass:['I felt that.','You clicked it. It remembers.','Please stop. The wallpaper is awake.']},
+{n:'CORPORATE',f:"'Press Start 2P'",tag:'circling back to synergize your pointer deliverables.',mq:'*** LET US TAKE THIS OFFLINE *** PER MY LAST DIV *** ALIGNING ON ALIGNMENT *** LEVERAGING YOUR CLICKS ***',sass:['Per my last click, please stop.','This interaction could have been a scroll.','Your click has been escalated to a meeting.']}];
+const ALTS={pers:['CHANGE MY MIND','WHO AM I NOW','PERSONALITY (SALE)'],flip:['RIGHT SIDE UP?','TURN ME OVER','GRAVITY: OPTIONAL'],mult:['CLONE ME HARDER','BREED','MORE'],dram:['DO NOT PRESS','IMPORTANT','OPEN SESAME'],noth:['NOTHING','TRY HARDER','HELLO?'],dec:['MAKE A WORSE DECISION','DECIDE (REGRETTABLY)','LOOK. LOOK AT IT.']};
+const FLOATS=['🦆','💿','🧿','🍄','🪩','🦴','🛸','🍕','👽','🧃'];
+const CURS=['🌀','💿','⚙️','👁️','🍕','🪩','🧿','🍄','🔪','🦆','⭐','🌶️'];
+const Ctx=createContext({labels:{},pers:PERS[0]});
+const useLabel=(id,def)=>{const c=useContext(Ctx);return c.labels[id]||def};
+function burst(x,y,list,n=14){
+ for(let i=0;i<n;i++){const el=document.createElement('div');el.textContent=pick(list);
+  Object.assign(el.style,{position:'fixed',left:x+'px',top:y+'px',fontSize:RI(18,38)+'px',zIndex:500,pointerEvents:'none',lineHeight:1});
+  document.body.appendChild(el);
+  gsap.to(el,{x:R(-220,220),y:R(-260,160),rotation:R(-540,540),opacity:0,duration:R(.9,1.7),ease:'power2.out',onComplete:()=>el.remove()})}}
+const FACTS=['Doors were invented in 1987 by a mildly annoyed cloud.','Seventy percent of Tuesdays are secretly Wednesdays in a hat.','The moon is legally a very large coupon.','Ducks cannot be audited, which is why they float.','Every staircase is just a slow elevator with trust issues.','The word "Thursday" was lost in a poker game in 1604.','Forks have a union. It is not going well.','Scientists have confirmed that left is mostly right, with exceptions.','A group of printers is called a regret.','The first spreadsheet was carved into a very surprised potato.','Mountains are only ever one big hill that never got therapy.','Pigeons invented the cursor to avoid doing their taxes.'];
+const LINES=['please hold, your reality is on the line','this sentence has been reviewed by a spoon','I contain multitudes and a coupon','warning: contents may settle during shipping into the void','nobody asked, but here we are','you scrolled so far the page began to blush','a small man lives in the scrollbar and he is tired','insert coin to continue being yourself','have you tried turning the universe off and on again','the buffering never ends it only learns'];
+const GLITCHES=['ERR0R: V1BES NOT F0UND','THE FLOOR IS HTML','T̷H̷I̷S̷ ̷I̷S̷ ̷F̷I̷N̷E̷','DEL3T3 Y0UR SH0ES','404 404 404 404','SYSTEM.OUT.SCREAM()'];
+function svgImg(lvl){
+ const cols=['#ff00c8','#00e5ff','#ffee00','#39ff14','#ff5d00','#7a00ff','#ffffff'];
+ const bg=pick(cols),fg=pick(cols.filter(c=>c!==bg));let s='';
+ for(let i=0;i<RI(2,5+Math.min(lvl,8));i++){const c=pick(cols);const k=RI(0,2);
+  s+=k===0?`<circle cx="${RI(10,190)}" cy="${RI(10,130)}" r="${RI(8,50)}" fill="${c}" opacity=".85"/>`:k===1?`<rect x="${RI(0,150)}" y="${RI(0,100)}" width="${RI(20,90)}" height="${RI(20,90)}" fill="${c}" transform="rotate(${RI(-40,40)} 100 70)"/>`:`<polygon points="${RI(0,200)},${RI(0,140)} ${RI(0,200)},${RI(0,140)} ${RI(0,200)},${RI(0,140)}" fill="${c}"/>`}
+ const eyes=pick(['● ●','◉ ◉','x x','◔ ◕','▲ ▲','$ $']),mouth=pick(['▬▬','◡','O','~~~','///']);
+ const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140"><rect width="200" height="140" fill="${bg}"/>${s}<text x="100" y="70" font-size="30" text-anchor="middle" font-family="monospace" fill="${fg}" stroke="#000" stroke-width="1">${eyes}</text><text x="100" y="105" font-size="26" text-anchor="middle" font-family="monospace" fill="${fg}" stroke="#000" stroke-width="1">${mouth}</text></svg>`;
+ return 'data:image/svg+xml;utf8,'+encodeURIComponent(svg)}
+const CAPS=['Portrait of a Tuesday','Unidentified lunch','Local man discovers he is a lamp','Something the mall left behind','Photo of nothing (enhanced)','The committee','Dave, but sideways'];
+function Fx({enabled,emoji}){
+ const cv=useRef(null),cur=useRef(null),S=useRef({x:-200,y:-200,trail:[],floats:[],on:true});
+ const [walk,setWalk]=useState(false);
+ useEffect(()=>{S.current.on=enabled;document.body.classList.toggle('cc',enabled&&matchMedia('(hover:hover)').matches);if(!enabled&&cv.current){const c=cv.current;c.getContext('2d').clearRect(0,0,c.width,c.height)}},[enabled]);
+ useEffect(()=>{
+  const c=cv.current,ctx=c.getContext('2d'),s=S.current,dpr=Math.min(2,devicePixelRatio||1);let w=0,h=0,raf=0;
+  const size=()=>{w=innerWidth;h=innerHeight;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)};size();
+  s.floats=Array.from({length:8},()=>({x:R(0,w),y:R(0,h),vx:R(-.7,.7),vy:R(-.7,.7),e:pick(FLOATS),r:R(0,6),z:R(26,42)}));
+  const move=e=>{s.x=e.clientX;s.y=e.clientY;Stats.moves++;if(cur.current)cur.current.style.transform=`translate(${s.x}px,${s.y}px)`;
+   if(s.on){s.trail.push({x:s.x,y:s.y,l:1,h:(performance.now()/6)%360});if(s.trail.length>70)s.trail.shift()}};
+  const over=e=>{const t=e.target.closest&&e.target.closest('.wob');if(!t||!s.on||t._b)return;t._b=1;
+   gsap.timeline({onComplete:()=>{t._b=0}}).to(t,{skewX:R(-22,22),rotation:R(-5,5),scaleY:R(.75,1.3),duration:.14}).to(t,{skewX:0,rotation:0,scaleY:1,duration:.7,ease:'elastic.out(1,.3)'})};
+  const loop=()=>{raf=requestAnimationFrame(loop);if(document.hidden)return;ctx.clearRect(0,0,w,h);if(!s.on)return;
+   for(let i=0;i<s.trail.length;i++){const p=s.trail[i];p.l-=.018;if(p.l<=0){s.trail.splice(i,1);i--;continue}
+    ctx.fillStyle=`hsla(${p.h},100%,55%,${p.l})`;ctx.beginPath();ctx.arc(p.x,p.y,10*p.l+2,0,7);ctx.fill()}
+   ctx.font='34px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+   for(const f of s.floats){const dx=f.x-s.x,dy=f.y-s.y,d=Math.hypot(dx,dy)||1;
+    if(d<130){f.vx+=dx/d*.9;f.vy+=dy/d*.9}
+    f.vx*=.985;f.vy*=.985;if(Math.abs(f.vx)+Math.abs(f.vy)<.4){f.vx+=R(-.05,.05);f.vy+=R(-.05,.05)}
+    f.x+=f.vx;f.y+=f.vy;f.r+=f.vx*.02;
+    if(f.x<10||f.x>w-10)f.vx*=-1;if(f.y<10||f.y>h-10)f.vy*=-1;f.x=Math.max(5,Math.min(w-5,f.x));f.y=Math.max(5,Math.min(h-5,f.y));
+    ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.r);ctx.font=f.z+'px serif';ctx.fillText(f.e,0,0);ctx.restore()}};
+  loop();addEventListener('pointermove',move);addEventListener('resize',size);document.addEventListener('mouseover',over);
+  const tm=setInterval(()=>{if(Math.random()<.6){setWalk(true);setTimeout(()=>setWalk(false),3500)}},9000);
+  return()=>{cancelAnimationFrame(raf);clearInterval(tm);removeEventListener('pointermove',move);removeEventListener('resize',size);document.removeEventListener('mouseover',over)}},[]);
+ const show=enabled&&typeof matchMedia!=='undefined'&&matchMedia('(hover:hover)').matches;
+ return html`<canvas id="floaters" ref=${cv}></canvas>${show?html`<div id="cur" ref=${cur} class=${walk?'walk':''}><span>${walk?'🚶':emoji}</span></div>`:null}`}
+
+function Win({id,title,x,y,w,z,front,close,onX,children,max}){
+ const [pos,setPos]=useState({x,y}),ref=useRef(null),d=useRef(null);
+ useEffect(()=>{const p=ref.current.parentElement;setPos(q=>({x:Math.max(0,Math.min(q.x,p.clientWidth-Math.min(w,p.clientWidth-8))),y:Math.max(0,Math.min(q.y,p.clientHeight-120))}))},[]);
+ const down=e=>{front(id);d.current={dx:e.clientX-pos.x,dy:e.clientY-pos.y};e.currentTarget.setPointerCapture(e.pointerId)};
+ const move=e=>{if(!d.current)return;const p=ref.current.parentElement;setPos({x:Math.max(-40,Math.min(p.clientWidth-60,e.clientX-d.current.dx)),y:Math.max(0,Math.min(p.clientHeight-30,e.clientY-d.current.dy))})};
+ const up=()=>{d.current=null};
+ const api={setPos,pos};
+ return html`<div class="win" ref=${ref} onPointerDown=${()=>front(id)} style=${{left:pos.x,top:pos.y,width:`min(${w}px,calc(100% - 8px))`,zIndex:z,transition:'left .25s,top .25s',maxHeight:max||'none'}}>
+  <div class="tt" onPointerDown=${down} onPointerMove=${move} onPointerUp=${up} onPointerCancel=${up} style=${{transition:'none'}}><b>${title}</b><button class="x" aria-label="close" onClick=${()=>onX?onX(api):close(id)}>x</button></div>
+  <div class="bd">${typeof children==='function'?children(api):children}</div></div>`}
+
+function W404(){const [n,setN]=useState(0);const m=['Reality could not be located. Have you checked under the couch?','Reality was here a second ago. It left a note: "brb".','Searching for reality... found only vibes.','Please reinsert reality and try again.'];
+ return html`<div><div class="pix">⛔ ERROR 404</div><p class="wob">REALITY NOT FOUND</p><p>${m[n%m.length]}</p><button class="go" onClick=${()=>setN(n+1)}>OK</button> <button class="go" onClick=${()=>setN(n+2)}>Also OK</button></div>`}
+
+function WJudge(){
+ const [t,setT]=useState('...I am watching.'),L=useRef(null),R2=useRef(null);
+ useEffect(()=>{const mv=e=>{[L.current,R2.current].forEach(p=>{if(!p)return;const b=p.parentElement.getBoundingClientRect(),cx=b.left+b.width/2,cy=b.top+b.height/2,a=Math.atan2(e.clientY-cy,e.clientX-cx);p.style.transform=`translate(${Math.cos(a)*9}px,${Math.sin(a)*9}px)`})};
+  addEventListener('pointermove',mv);
+  const f=()=>{const s=Math.round((Date.now()-Stats.start)/1000),c=Stats.clicks;
+   setT(pick([c>25?`${c} clicks. Your finger deserves a lawyer.`:c<3?'You have clicked almost nothing. Suspicious.':`${c} clicks so far. I am keeping score.`,s>60?`You have been here ${s} seconds. No one is proud of this.`:`${s} seconds in. The hunger games has fewer decisions.`,Stats.moves>1500?'You move the mouse like someone looking for their keys.':'Your mouse moves with the confidence of a shopping cart.','Your taste is... a choice.','I have seen better. I have also seen worse. Today is worse.']))};
+  f();const i=setInterval(f,3800);return()=>{clearInterval(i);removeEventListener('pointermove',mv)}},[]);
+ return html`<div><div class="stack"><span class="eyes"><span style=${{display:'inline-block',width:34,height:34,borderRadius:'50%',background:'#fff',border:'3px solid #000',position:'relative',marginRight:6}}><i ref=${L} style=${{position:'absolute',left:9,top:9,width:12,height:12,borderRadius:'50%',background:'#000'}}></i></span><span style=${{display:'inline-block',width:34,height:34,borderRadius:'50%',background:'#fff',border:'3px solid #000',position:'relative'}}><i ref=${R2} style=${{position:'absolute',left:9,top:9,width:12,height:12,borderRadius:'50%',background:'#000'}}></i></span></span><b>YOUR COMPUTER IS JUDGING YOU</b></div><p>${t}</p></div>`}
+
+function WCalc(){
+ const [d,setD]=useState('0');
+ const keys=['7','8','9','÷','4','5','6','×','1','2','3','−','C','0','=','+'];
+ const press=k=>{if(k==='C')return setD('0');if(k==='=')return setD(pick(['42','7 (probably)','∞','your mom','NaN but friendly','banana',String(RI(1,9999)),'ask again later','🪑']));setD(p=>(p==='0'||p.length>11||/[a-z∞🪑(]/i.test(p)?'':p)+k)};
+ return html`<div class="calc"><div class="scr">${d}</div>${keys.map(k=>html`<button key=${k} class="go" onClick=${()=>press(k)}>${k}</button>`)}</div>`}
+
+function WIE(){
+ const [url,setUrl]=useState('http://www.void-mall.net/lobby'),[page,setPage]=useState('http://www.void-mall.net/lobby');
+ const h=[...page].reduce((a,c)=>a+c.charCodeAt(0),0),N=['a sentient fax','nine pigeons in a coat','the number 7','a lighthouse made of ham','Dave'];
+ return html`<div><div class="stack"><button class="go" onClick=${()=>setPage(page+'/forward')}>Back</button><input id="addr" class="addr" aria-label="address" value=${url} onChange=${e=>setUrl(e.target.value)} onKeyDown=${e=>{if(e.key==='Enter')setPage(url)}} style=${{flex:1,minWidth:0}}/><button class="go" onClick=${()=>setPage(url)}>Go</button></div>
+ <div class="ie-page"><div class="wob big" style=${{fontSize:26,margin:0}}>🌐 ${N[h%5]}</div><p>Welcome to <b>${page.slice(0,40)}</b>. Population: you. Weather: ${pick(['Tuesday','mild screaming','soup'])}. Dimension #${h%999}.</p><p>Visitors today: ${h*7%9999}. Pages that exist: ${h%3}.</p></div></div>`}
+
+function WFolder(){
+ const [f,setF]=useState(null);
+ const files={'readme.txt':'I said DO NOT OPEN. You are a menace.','hint.txt':'the gems remember an order: RED GREEN BLUE RED YELLOW','pics.zip':'4,000 photos of the same potato. All different potatoes.','dont.exe':'__run'};
+ return html`<div><div class="stack">${Object.keys(files).map(k=>html`<button key=${k} class="icon" style=${{color:'#000',textShadow:'none',width:80}} onClick=${()=>{if(files[k]==='__run'){setF('Running dont.exe...');Bus.dramatic()}else setF(files[k])}}><i>${k.endsWith('exe')?'⚠️':k.endsWith('zip')?'🗜️':'📄'}</i>${k}</button>`)}</div><p>${f||'(click a file. or do not.)'}</p></div>`}
+
+function WStubborn(){
+ const [n,setN]=useState(0),msgs=['no.','you cannot leave.','I live here now.','closing... lol','that was the minimize button, you fool','try the other x','x is a lie','okay okay, closing... (not closing)'];
+ return null}
+const WLIST=[
+ {id:'w404',title:'Error.exe',x:160,y:20,w:290,C:W404,ic:'⛔',lb:'Error'},
+ {id:'judge',title:'Judge.sys',x:40,y:230,w:290,C:WJudge,ic:'👀',lb:'Judge'},
+ {id:'calc',title:'Calculator (Broken)',x:300,y:290,w:230,C:WCalc,ic:'🧮',lb:'Calc'},
+ {id:'ie',title:'Internet Explorer: Dimension 7',x:120,y:420,w:380,C:WIE,ic:'🌐',lb:'IE-7D',off:true},
+ {id:'fold',title:'DO NOT OPEN',x:200,y:120,w:330,C:WFolder,ic:'📁',lb:'DO NOT OPEN',off:true}];
+
+function Desk(){
+ const [open,setOpen]=useState({w404:true,judge:true,calc:true,stub:true}),[zs,setZs]=useState({}),zr=useRef(10),[tries,setTries]=useState(0);
+ const front=id=>{zr.current++;setZs(z=>({...z,[id]:zr.current}))};
+ const close=id=>setOpen(o=>({...o,[id]:false}));
+ const toggle=id=>{setOpen(o=>({...o,[id]:true}));front(id)};
+ const stubX=({setPos})=>{const n=tries+1;setTries(n);const m=['no.','you cannot leave.','I live here now.','x is a lie. try the other one.','I am load-bearing.','closing... closing... lol','okay fine, bye (not bye)'];
+  Bus.toast(m[Math.min(n-1,m.length-1)]);const p=document.getElementById('desk');
+  if(n%7===0){setPos({x:-999,y:-999});setTimeout(()=>{setPos({x:R(60,p.clientWidth-260),y:R(20,p.clientHeight-200)});Bus.toast('I am back.')},1800)}
+  else setPos({x:R(0,Math.max(10,p.clientWidth-260)),y:R(10,Math.max(20,p.clientHeight-200))})};
+ return html`<div id="desk"><div class="icons">${WLIST.map(w=>html`<button key=${w.id} class="icon" onClick=${()=>toggle(w.id)}><i>${w.ic}</i>${w.lb}</button>`)}<button class="icon" onClick=${()=>toggle('stub')}><i>🔒</i>Stuck</button></div>
+ ${WLIST.map(w=>open[w.id]?html`<${Win} key=${w.id} id=${w.id} title=${w.title} x=${w.x} y=${w.y} w=${w.w} z=${zs[w.id]||5} front=${front} close=${close}><${w.C}/><//>`:null)}
+ ${open.stub?html`<${Win} key="stub" id="stub" title="Window That Refuses To Close" x=${330} y=${40} w=${260} z=${zs.stub||5} front=${front} close=${close} onX=${stubX}>${(api)=>html`<div><p class="wob">THIS WINDOW WILL NOT CLOSE.</p><p>Attempts to leave: <b>${tries}</b></p><button class="go" onClick=${()=>stubX(api)}>Close</button> <button class="go" onClick=${()=>stubX(api)}>Really close</button> <button class="go" onClick=${()=>stubX(api)}>Pretty please</button></div>`}<//>`:null}
+ </div>`}
+const SECRETS={door:['the door was never locked. you were.','behind this room is another room. it is also behind you.','you are the 4,000,000th visitor. nothing happens.','the walls are made of unfinished sentences','everything here is optional except the eyes','tap an object. they are shy but ravenous'],
+ logo:['> LOGO.EXE IS SELF AWARE','> you clicked me seven times. i felt every one.','> there is no basement. there is a sub-basement.','> the cake is a div','> ping 8.8.8.8 ... reply from your childhood bedroom','> THANK YOU FOR PLAYING. PLEASE CLICK SOMETHING ELSE.']};
+function Room({kind,onExit}){
+ const cv=useRef(null),root=useRef(null),[mi,setMi]=useState(0),[n,setN]=useState(0);
+ const things=kind==='door'?['👁️','🫠','🕳️','🦷','🪑','🌙','🥫']:['💾','📼','🖨️','📠','🧮'];
+ const pts=useRef(things.map(()=>({l:RI(8,82),t:RI(10,65),d:R(0,5)}))).current,eyeAt=useRef({l:RI(3,90),t:RI(70,92)}).current;
+ useEffect(()=>{gsap.from(root.current,{opacity:0,scale:1.4,duration:.9,ease:'power3.out'});Snd.chord();
+  const c=cv.current,ctx=c.getContext('2d');let raf,w=0,h=0,mx=.5,my=.5;const dpr=Math.min(2,devicePixelRatio||1);
+  const size=()=>{w=c.clientWidth;h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)};size();
+  const mv=e=>{mx=e.clientX/w;my=e.clientY/h};addEventListener('pointermove',mv);addEventListener('resize',size);
+  const door=kind==='door';
+  const loop=t=>{raf=requestAnimationFrame(loop);t/=1000;ctx.clearRect(0,0,w,h);
+   if(door){for(let i=0;i<14;i++){const r=((t*40+i*45)%640);ctx.strokeStyle=`hsla(${280+i*8},100%,65%,${1-r/640})`;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(w/2+(mx-.5)*60,h*.42+(my-.5)*40,r*1.3,r*.7,t*.1,0,7);ctx.stroke()}
+    for(let i=0;i<6;i++){const x=w*(.15+i*.14),y=h*(.2+.12*Math.sin(t+i));ctx.fillStyle='#fff';ctx.beginPath();ctx.ellipse(x,y,28,17,0,0,7);ctx.fill();ctx.fillStyle='#000';ctx.beginPath();ctx.arc(x+(mx*w-x)*.03,y+(my*h-y)*.03,9,0,7);ctx.fill()}}
+   else{ctx.font='16px monospace';ctx.fillStyle='#1affa8';for(let i=0;i<Math.floor(w/22);i++){const y=((t*90+i*137)%(h+60))-30;ctx.globalAlpha=.7;ctx.fillText(String.fromCharCode(0x30A0+((i*7+Math.floor(t*6))%90)),i*22,y);ctx.globalAlpha=.25;ctx.fillText('1',i*22,y-18)}ctx.globalAlpha=1}};
+  raf=requestAnimationFrame(loop);
+  const m=setInterval(()=>setMi(i=>i+1),4200);
+  return()=>{cancelAnimationFrame(raf);clearInterval(m);removeEventListener('pointermove',mv);removeEventListener('resize',size)}},[]);
+ const list=SECRETS[kind];
+ const touch=(e,i)=>{const b=e.currentTarget.getBoundingClientRect();burst(b.left+b.width/2,b.top+b.height/2,things,10);setN(x=>x+1);setMi(m=>m+1+i);gsap.fromTo(e.currentTarget,{rotation:0,scale:1},{rotation:360,scale:1.6,yoyo:true,repeat:1,duration:.35});Snd.beep(R(300,1200),.12,'sine',.07)};
+ return html`<div class=${'fix room '+(kind==='logo'?'logo':'')} ref=${root} role="dialog" aria-label=${kind==='door'?'The Forbidden Room':'The Logo Room'}><canvas ref=${cv}></canvas>
+  <button class="btn exit y" onClick=${onExit}>LEAVE (IF YOU CAN)</button>
+  ${things.map((t,i)=>html`<button key=${i} class="thing" aria-label="strange object" style=${{left:pts[i].l+'%',top:pts[i].t+'%',animationDelay:pts[i].d+'s'}} onClick=${e=>touch(e,i)}>${t}</button>`)}
+  <button class="eye" aria-label="a tiny eye" style=${{left:eyeAt.l+'%',top:eyeAt.t+'%'}} onClick=${()=>{setMi(list.length-1);setN(x=>x+5);Bus.found('eye')}}></button>
+  <div class="msg">${list[mi%list.length]}<div class="pix" style=${{fontSize:18,marginTop:10,opacity:.7}}>objects poked: ${n}</div></div></div>`}
+
+function Scroller(){
+ const mk=i=>{const t=['fact','line','img','glitch','anim','img'][i%6===5?2:RI(0,4)];return {i,t,v:t==='fact'?pick(FACTS):t==='line'?pick(LINES):t==='glitch'?pick(GLITCHES):t==='anim'?pick(['🦆','🪑','🌮','🧅','🐌','🧽']):svgImg(i),c:pick(CAPS)}};
+ const [items,setItems]=useState(()=>Array.from({length:7},(_,i)=>mk(i)));
+ const on=e=>{const el=e.currentTarget;if(el.scrollTop+el.clientHeight>el.scrollHeight-260)setItems(a=>a.length>240?a:[...a,...Array.from({length:5},(_,k)=>mk(a.length+k))])};
+ return html`<div class="scroller" onScroll=${on} tabIndex="0" aria-label="Infinite scroll of nonsense">${items.map(it=>html`<${Nz} key=${it.i} it=${it}/>`)}</div>`}
+function Nz({it}){
+ const r=useRef(null),lv=it.i;
+ useEffect(()=>{let tw;if(it.t==='anim'||lv>12)tw=gsap.to(r.current,{rotation:R(-12,12)*Math.min(3,1+lv/20),x:R(-12,12),duration:R(.4,1.2),yoyo:true,repeat:-1,ease:'sine.inOut'});return()=>tw&&tw.kill()},[]);
+ const sz=Math.min(lv/6,5);
+ return html`<div class="nz" ref=${r} style=${{fontSize:18+sz*3,borderColor:lv>10?pick(['#ff00c8','#39ff14','#ffee00']):'#00e5ff'}}><div class="lv">#${lv+1} · absurdity ${Math.min(99,lv*4+3)}%</div>
+ ${it.t==='img'?html`<div><img src=${it.v} alt=${it.c} width="300" height="210"/><i>${it.c}</i></div>`:it.t==='glitch'?html`<div class="glitch pix" data-t=${it.v} style=${{fontSize:30}}>${it.v}</div>`:it.t==='anim'?html`<div style=${{fontSize:56}}>${it.v}</div>`:it.t==='fact'?html`<div><b>FACT:</b> ${it.v}</div>`:html`<div>${it.v}</div>`}</div>`}
+
+function Hid({id,e,s}){const [d,setD]=useState(false);return d?null:html`<button class="hid" aria-label="a hidden thing" style=${s} onClick=${ev=>{setD(true);burst(ev.clientX,ev.clientY,[e,'✨'],8);Bus.found(id)}}>${e}</button>`}
+
+function Dram({done}){
+ const t=useRef(null),a=useRef(null),b=useRef(null);
+ useEffect(()=>{const tl=gsap.timeline({onComplete:done});
+  tl.set(a.current,{transformOrigin:'top',scaleY:0,top:0}).set(b.current,{transformOrigin:'bottom',scaleY:0,bottom:0})
+   .to([a.current,b.current],{scaleY:1,duration:.5,ease:'power4.in'})
+   .add(()=>{t.current.textContent='PLEASE STAND BY';Snd.beep(110,.4,'sawtooth',.08)})
+   .from(t.current,{scale:3,opacity:0,duration:.4,ease:'back.out(3)'})
+   .add(()=>{t.current.textContent='THIS IS EXTREMELY IMPORTANT'}).to('#stage',{x:'+=14',yoyo:true,repeat:9,duration:.05})
+   .add(()=>{t.current.textContent='ERROR: IMPORTANCE OVERFLOW';Snd.beep(80,.5,'sawtooth',.08)},'+=.1').to(t.current,{rotation:360,scale:.4,duration:.7,ease:'power2.inOut'})
+   .add(()=>{t.current.textContent='...that was unnecessary.'}).to(t.current,{rotation:0,scale:1,duration:.4})
+   .to([a.current,b.current],{scaleY:0,duration:.6,delay:.9,ease:'power4.out'}).to(t.current,{opacity:0,duration:.2},'<');
+  return()=>tl.kill()},[]);
+ return html`<div id="dram"><div class="bar" ref=${a}></div><div class="bar" ref=${b}></div><div class="t" ref=${t}></div></div>`}
+
+function Crash({done}){
+ const p=useRef(null);
+ useEffect(()=>{const tl=gsap.timeline({onComplete:done}).to(p.current,{width:'100%',duration:2.6,ease:'steps(9)'});return()=>tl.kill()},[]);
+ return html`<div id="crash" role="alert"><p>A fatal exception has occurred at 0028:C0DE0DAD in VXD VIBES(01).</p><p>The website has crashed. Recovering dignity...</p><div class="pb"><i ref=${p}></i></div><p>Press any key to continue (you do not need to).</p></div>`}
+function Hero({p}){
+ const pe=p.pers,lg=useRef(null);
+ return html`<section class="sec movable s1"><${Hid} id="h1" e="🪲" s=${{right:'5%',top:'8px'}}/>
+  <button ref=${lg} class="big rot" onClick=${p.logo} aria-label="logo" style=${{background:'#000',color:'var(--b)',border:'6px double var(--a)',padding:'6px 14px',cursor:'pointer',display:'block',maxWidth:'100%',textAlign:'left'}}><span class="glitch" data-t="CURSED.EXE">CURSED.EXE</span></button>
+  <h1 class="big wob" style=${{marginTop:18}}>WELCOME TO THE <span style=${{background:'var(--a)',padding:'0 8px'}}>VOID</span>*</h1>
+  <p class="note wob">${pe.tag}</p>
+  <div class="marq"><span>${pe.mq}</span></div>
+  <p class="pix" style=${{margin:0}}>*the void has no purpose, no pricing and no contact page. the logo is shy. try it.</p></section>`}
+
+function BtnSec({p}){
+ const [mult,setMult]=useState(1),[nc,setNc]=useState(0),[dodge,setDodge]=useState(0),rb=useRef(null),box=useRef(null);
+ const ln=useLabel('pers','CHANGE PERSONALITY'),lf=useLabel('flip','FLIP EVERYTHING'),lm=useLabel('mult','CLICK TO MULTIPLY'),ld=useLabel('dram','DRAMATIC BUTTON'),lr=useLabel('run','CATCH ME'),lo=useLabel('noth','DO NOTHING');
+ const flee=(cx,cy,force)=>{const b=box.current.getBoundingClientRect(),r=rb.current.getBoundingClientRect();
+  if(dodge>14)return;const d=Math.hypot(cx-(r.left+r.width/2),cy-(r.top+r.height/2));if(!force&&d>95)return;
+  setDodge(n=>n+1);gsap.to(rb.current,{left:R(4,Math.max(8,b.width-r.width-4)),top:R(4,Math.max(8,b.height-r.height-4)),duration:.25,ease:'power2.out'})};
+ const nothingMsg=n=>n===100?'100 clicks. Still nothing. Truly impressive.':n>100?'Still nothing. You are the nothing now.':pick(['Nothing happened.','Nothing happened, but louder.','The button is deeply uninterested.','Your click went somewhere. Not here.','Nothing. Again.']);
+ const cap=Math.min(mult,48);
+ return html`<section class="sec movable s2"><${Hid} id="h2" e="🧿" s=${{left:'48%',bottom:'4px'}}/>
+  <h2 class="big wob">Completely useless buttons</h2><p class="note">Six buttons. Five do something. Do not ask which.</p>
+  <div class="row">
+   <div class="cell"><h3>The shapeshifter</h3><button class="btn rot" onClick=${p.nextPers}>${ln}</button><p class="pix">now: ${p.pers.n}</p></div>
+   <div class="cell"><h3>The upside-downer</h3><button class="btn alt rot" onClick=${p.flip}>${lf}</button></div>
+   <div class="cell"><h3>The multiplier</h3><div class="multi">${Array.from({length:cap},(_,i)=>html`<button key=${i} class="btn y" onClick=${()=>setMult(m=>m+2)}>${lm}</button>`)}</div><p class="pix">${mult>=49?'they are multiplying off-screen.':'copies: '+mult}</p></div>
+   <div class="cell"><h3>The coward</h3><div id="runbox" ref=${box} onPointerMove=${e=>flee(e.clientX,e.clientY)}><button class="btn g" ref=${rb} onPointerDown=${e=>{if(dodge<=14){e.preventDefault();flee(0,0,true)}}} onClick=${()=>{if(dodge>14){Bus.toast('...you caught me. I am so proud.');Bus.party()}}}>${dodge>14?'...fine.':lr}</button></div><p class="pix">dodges: ${dodge}</p></div>
+   <div class="cell"><h3>The unnecessary</h3><button class="btn rot" onClick=${()=>Bus.dramatic()}>${ld}</button></div>
+   <div class="cell"><h3>The void button</h3><button class="btn alt" onClick=${()=>{const n=nc+1;setNc(n);Bus.toast(nothingMsg(n))}}>${lo}</button><p class="pix">clicks: ${nc}. effect: none.</p></div>
+  </div></section>`}
+
+function DecSec({p}){
+ const l=useLabel('dec','MAKE A TERRIBLE DECISION');
+ return html`<section class="sec movable s3"><h2 class="big wob">The chaos generator</h2><p class="note">One button. It changes the palette plus a few other things, chosen at random. It will not ask first.</p>
+  <button class="btn rot" style=${{fontSize:'clamp(16px,4vw,26px)',padding:'18px 22px'}} onClick=${p.decide}>${l}</button>
+  <p class="pix">decisions made: ${p.decisions} · regrets: ${Math.floor(p.decisions*1.5)} <button class="tb" onClick=${p.reset}>RESET CHAOS</button></p></section>`}
+
+function DeskSec(){return html`<section class="sec movable s4"><${Hid} id="h3" e="🪱" s=${{right:'8px',bottom:'8px'}}/><h2 class="big wob">Interactive desktop</h2><p class="note">Drag the windows by their blue title bars. Icons on the left open more of them. One window will not leave.</p><${Desk}/></section>`}
+
+function DoorSec({p}){
+ const lf=useRef(null),busy=useRef(false);
+ const open=()=>{if(busy.current)return;busy.current=true;Snd.beep(90,.5,'sawtooth',.08);
+  gsap.timeline().to(lf.current,{rotationY:-112,duration:.9,ease:'power3.out'}).add(()=>{p.openRoom('door');}).to(lf.current,{rotationY:0,duration:.5,delay:.8,onComplete:()=>{busy.current=false}})};
+ return html`<section class="sec movable s1"><${Hid} id="h4" e="🕷️" s=${{left:'10px',top:'10px'}}/><h2 class="big wob">The forbidden room</h2>
+  <div class="door-wrap"><div id="door"><div class="frame"></div><button class="leaf" ref=${lf} onClick=${open} aria-label="Open the forbidden door" style=${{transformOrigin:'left center'}}></button></div>
+  <p class="note" style=${{flex:'1 1 220px'}}>There is a door. It has a doorknob. Nothing bad has ever happened behind it, and there is nothing bad to see in there.</p></div></section>`}
+
+function CursorSec({p}){
+ return html`<section class="sec movable s2"><h2 class="big wob">Cursor experiments</h2>
+  <p class="note">Your pointer is a spinning object with a rainbow tail. Sometimes it grows a tiny body and walks. Eight things float around and flee from it. Move over the headings: they flinch.</p>
+  <button class=${'btn '+(p.cursorOn?'g':'alt')} id="curtog" onClick=${p.toggleCursor} aria-pressed=${p.cursorOn}>CURSOR EFFECTS: ${p.cursorOn?'ON':'OFF'}</button>
+  <p class="pix wob" style=${{fontSize:34}}>touch me. no. the other me.</p></section>`}
+
+function SecretSec({p}){
+ const buf=useRef([]),[ok,setOk]=useState(false);
+ const gems=[['r','#ff2020','red'],['g','#20d030','green'],['b','#2050ff','blue'],['y','#ffe600','yellow']];
+ const hit=k=>{buf.current=[...buf.current,k].slice(-5);Snd.beep({r:262,g:330,b:392,y:523}[k],.15,'triangle',.07);if(buf.current.join('')==='rgbry'){buf.current=[];setOk(true);Bus.party()}};
+ const pad=[['↑','ArrowUp'],['↓','ArrowDown'],['←','ArrowLeft'],['→','ArrowRight'],['B','b'],['A','a']];
+ return html`<section class="sec movable s3"><${Hid} id="h5" e="🍩" s=${{right:'30%',top:'6px'}}/><h2 class="big wob">Easter eggs (probably)</h2>
+  <p class="note">Four gems. They like a particular order. Somebody left a hint in a folder you were told not to open. There is also a famous cheat code, and for phones, a keypad.</p>
+  <div class="stack">${gems.map(g=>html`<button key=${g[0]} class="gem" aria-label=${g[2]+' gem'} style=${{background:g[1]}} onClick=${()=>hit(g[0])}></button>`)}<span class="pix">${ok?'the gems approve.':'the gems are waiting.'}</span></div>
+  <div class="stack" style=${{marginTop:14}}>${pad.map(k=>html`<button key=${k[1]} class="tb" aria-label=${'key '+k[0]} onClick=${()=>Bus.konamiKey(k[1])}>${k[0]}</button>`)}</div></section>`}
+
+function ScrollSec(){return html`<section class="sec movable s4"><h2 class="big wob">The infinite scroll of nonsense</h2><p class="note">Scroll inside the box. It gets worse the further you go.</p><${Scroller}/></section>`}
+
+function FootSec({p}){return html`<section class="sec movable s1"><${Hid} id="h6" e="🧲" s=${{left:'60%',bottom:'6px'}}/><h2 class="big wob" style=${{fontSize:'clamp(22px,5vw,40px)'}}>You reached the bottom</h2>
+ <p class="note">Hidden things found: <b>${p.found.size}/6</b>. ${p.found.size>=6?'All of them. Go outside.':'They are small and they are ashamed.'}</p>
+ <p class="pix">© 1998-2026 Nobody · Made with React, GSAP and poor decisions · Best viewed while upside down</p></section>`}
+
+const SECS={hero:Hero,btn:BtnSec,dec:DecSec,desk:DeskSec,door:DoorSec,cur:CursorSec,sec:SecretSec,scr:ScrollSec,foot:FootSec};
+const BODY_VARS=['--bg','--bg2','--fg','--a','--b','--c','--disp','--body','--ls','--sk'];
+const POPS=['You have won NOTHING!','Your PC has 0 viruses and 9 feelings.','Hot singles in your area: moths.','Update available: v0.0.0 (downgrade)','Click OK to continue being you.','This popup is brought to you by a very small raccoon.'];
+const KON=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+function App(){
+ const [pi,setPi]=useState(0),[labels,setLabels]=useState({}),[order,setOrder]=useState(['hero','btn','dec','desk','door','cur','sec','scr','foot']),[resetN,setResetN]=useState(0);
+ const [cursorOn,setCursorOn]=useState(()=>store.get('cursed-cursor','1')==='1'),[emoji,setEmoji]=useState('🌀'),[sound,setSound]=useState(()=>store.get('cursed-sound','0')==='1');
+ const [pops,setPops]=useState([]),[toast,setToast]=useState(null),[sass,setSass]=useState(null),[crash,setCrash]=useState(false),[dram,setDram]=useState(false),[room,setRoom]=useState(null),[found,setFound]=useState(()=>new Set()),[decisions,setDecisions]=useState(0);
+ const R_=useRef({}),flipped=useRef(false),logoN=useRef(0),konBuf=useRef([]),clicks=useRef([]),tt=useRef(0),st=useRef(0),partied=useRef(false);
+ R_.current={pi,room,crash,dram};
+ Snd.on=sound;
+ const say=t=>{setSass(t);clearTimeout(st.current);st.current=setTimeout(()=>setSass(null),4600)};
+ const tst=t=>{setToast(t);clearTimeout(tt.current);tt.current=setTimeout(()=>setToast(null),3200)};
+ const bs=document.body.style;
+ const applyPal=p=>Object.entries(p).forEach(([k,v])=>bs.setProperty('--'+k,v));
+ const popup=()=>{const id=Math.random();setPops(a=>[...a.slice(-3),{id,x:RI(8,Math.max(10,innerWidth-280)),y:RI(70,Math.max(80,innerHeight-170)),t:pick(POPS)}]);setTimeout(()=>setPops(a=>a.filter(q=>q.id!==id)),9000)};
+ const party=()=>{Snd.chord();for(let k=0;k<6;k++)setTimeout(()=>burst(R(40,innerWidth-40),R(80,innerHeight-80),['🎉','✨','🍕','💥','🦆','🌈','👾'],12),k*150);
+  gsap.to('#stage',{rotation:'+=360',duration:1.5,ease:'power2.inOut',onComplete:()=>gsap.set('#stage',{rotation:flipped.current?180:0})})};
+ const flip=()=>{flipped.current=!flipped.current;gsap.to('#stage',{rotation:flipped.current?180:0,duration:1.1,ease:'back.inOut(1.4)'});tst(flipped.current?'gravity has been negotiated.':'gravity restored. mostly.')};
+ const nextPers=()=>{const n=(R_.current.pi+1)%PERS.length;setPi(n);bs.setProperty('--disp',PERS[n].f+',Impact,sans-serif');applyPal(PALS[n+1>5?0:n+1]);tst('PERSONALITY: '+PERS[n].n);say(PERS[n].sass[0])};
+ const decide=()=>{const n=decisions+1;setDecisions(n);
+  const fx=[['typography',()=>{bs.setProperty('--disp',pick(FONTS)+',Impact,sans-serif');bs.setProperty('--body',pick(BODYF)+',sans-serif');bs.setProperty('--ls',R(-.03,.12).toFixed(3)+'em');bs.setProperty('--sk',RI(-14,14)+'deg')}],
+   ['shoved things',()=>gsap.to('.movable',{x:()=>R(-22,22),y:()=>R(-12,12),duration:.7,ease:'elastic.out(1,.4)'})],
+   ['new cursor',()=>setEmoji(pick(CURS))],
+   ['spun stuff',()=>gsap.to(gsap.utils.shuffle(gsap.utils.toArray('.rot')).slice(0,4),{rotation:()=>R(-200,200),duration:.8,ease:'back.out(2)'})],
+   ['popup',popup]];
+  const ch=gsap.utils.shuffle(fx).slice(0,2+RI(0,1));applyPal(pick(PALS));ch.forEach(f=>f[1]());Snd.beep(R(100,500),.2,'sawtooth',.06);
+  tst('DECISION #'+n+': palette, '+ch.map(f=>f[0]).join(', '))};
+ const reset=()=>{BODY_VARS.forEach(v=>bs.removeProperty(v));document.body.classList.remove('k98');gsap.killTweensOf('.movable,.rot,#stage');gsap.set('.movable,.rot,#stage',{clearProps:'all'});
+  flipped.current=false;setPi(0);setLabels({});setOrder(['hero','btn','dec','desk','door','cur','sec','scr','foot']);setPops([]);setEmoji('🌀');setDecisions(0);setRoom(null);setCrash(false);setDram(false);setSass(null);setResetN(n=>n+1);tst('chaos reset. you are welcome.')};
+ const konamiKey=k=>{konBuf.current=[...konBuf.current,k.length===1?k.toLowerCase():k].slice(-10);
+  if(konBuf.current.join()===KON.join()){konBuf.current=[];const on=document.body.classList.toggle('k98');if(on)BODY_VARS.slice(0,6).forEach(v=>bs.removeProperty(v));Snd.chord();tst(on?'SECRET THEME UNLOCKED: C:\\DOS\\HACKERMAN':'secret theme put away.');burst(innerWidth/2,innerHeight/2,['💾','🕹️','⬆️','⬇️'],18)}};
+ const onFound=id=>{setFound(s=>{const n=new Set(s);n.add(id);return n});tst('hidden thing found! '+(found.size+1)+'/6');Snd.beep(880,.2,'sine',.08)};
+ Bus.toast=tst;Bus.say=say;Bus.popup=popup;Bus.dramatic=()=>{if(!R_.current.dram)setDram(true)};Bus.party=party;Bus.openRoom=setRoom;Bus.flip=flip;Bus.found=onFound;Bus.konamiKey=konamiKey;
+ const logo=()=>{logoN.current++;gsap.fromTo('#stage section:first-child button.big',{x:-8},{x:0,duration:.4,ease:'elastic.out(1,.2)'});Snd.beep(200+logoN.current*80,.1);
+  if(logoN.current===4)tst('the logo twitched.');if(logoN.current>=7){logoN.current=0;setRoom('logo')}};
+ const toggleCursor=()=>{const v=!cursorOn;setCursorOn(v);store.set('cursed-cursor',v?'1':'0')};
+ const toggleSound=()=>{const v=!sound;Snd.on=v;setSound(v);store.set('cursed-sound',v?'1':'0');if(v)Snd.beep(660,.15,'triangle',.08)};
+ useEffect(()=>{
+  const click=e=>{Stats.clicks++;if(e.target.closest&&e.target.closest('button'))Snd.beep(R(180,900),.07);
+   const now=Date.now();clicks.current=[...clicks.current.filter(t=>now-t<4000),now];
+   if(clicks.current.length>=11){clicks.current=[];say(pick(['STOP TOUCHING EVERYTHING','STOP TOUCHING EVERYTHING','that is enough clicking for one lifetime',...PERS[R_.current.pi].sass]))}};
+  const key=e=>{Stats.keys++;konamiKey(e.key)};
+  document.addEventListener('click',click);addEventListener('keydown',key);
+  const iv=setInterval(()=>{const r=R_.current;if(r.room||r.crash||r.dram||document.hidden)return;
+   const k=pick(['label','label','sass','hide','hide','shuffle','crash','sass']);
+   if(k==='label'){const ids=gsap.utils.shuffle(Object.keys(ALTS)).slice(0,2),o={};ids.forEach(i=>o[i]=pick(ALTS[i]));setLabels(o);setTimeout(()=>setLabels({}),7000)}
+   else if(k==='sass')say(pick(PERS[r.pi].sass));
+   else if(k==='hide'){const b=gsap.utils.shuffle(gsap.utils.toArray('.sec .btn,.icon')).slice(0,3);gsap.to(b,{autoAlpha:0,duration:.2});say('where did the buttons go? not my problem.');setTimeout(()=>gsap.to(b,{autoAlpha:1,duration:.3}),3000)}
+   else if(k==='shuffle'){setOrder(o=>{const m=o.slice(1,-1),a=RI(0,m.length-1),b=RI(0,m.length-1);[m[a],m[b]]=[m[b],m[a]];return[o[0],...m,o[o.length-1]]});say('I rearranged myself. you are welcome.')}
+   else if(k==='crash'&&Math.random()<.45)setCrash(true)},6500);
+  return()=>{document.removeEventListener('click',click);removeEventListener('keydown',key);clearInterval(iv)}},[]);
+ useEffect(()=>{if(found.size>=6&&!partied.current){partied.current=true;party();say('YOU FOUND EVERYTHING. I am not mad. I am proud.')}},[found]);
+ const pe=PERS[pi];
+ return html`<${Ctx.Provider} value=${{labels,pers:pe}}>
+  <div id="bar"><span class="tag">CURSED.EXE / v98.6</span>
+   <button class=${'tb '+(sound?'on':'')} id="sndtog" aria-pressed=${sound} onClick=${toggleSound}>SOUND: ${sound?'ON':'OFF'}</button>
+   <button class=${'tb '+(cursorOn?'on':'')} id="curbar" aria-pressed=${cursorOn} onClick=${toggleCursor}>CURSOR FX: ${cursorOn?'ON':'OFF'}</button>
+   <button class="tb" id="resetbtn" onClick=${reset}>RESET CHAOS</button></div>
+  <main id="stage" key=${resetN}>${order.map(id=>{const C=SECS[id];return html`<${C} key=${id} p=${{pers:pe,logo,nextPers,flip,decide,decisions,reset,cursorOn,toggleCursor,found,openRoom:setRoom}}/>`})}</main>
+  <${Fx} enabled=${cursorOn} emoji=${emoji}/>
+  ${pops.map(q=>html`<div key=${q.id} class="pop" role="status" style=${{left:q.x,top:q.y}}><div class="tt"><span>Important Message</span></div><div class="bd">${q.t}<br/><button class="tb" onClick=${()=>setPops(a=>a.filter(z=>z.id!==q.id))}>OK</button></div></div>`)}
+  ${sass?html`<div id="sass" role="status">${sass}</div>`:null}
+  ${toast?html`<div id="toast" role="status">${toast}</div>`:null}
+  ${dram?html`<${Dram} done=${()=>setDram(false)}/>`:null}
+  ${crash?html`<${Crash} done=${()=>{setCrash(false);tst('recovered. we do not talk about it.')}}/>`:null}
+  ${room?html`<${Room} key=${room} kind=${room} onExit=${()=>setRoom(null)}/>`:null}
+ <//>`}
+ReactDOM.createRoot(document.getElementById('root')).render(html`<${App}/>`);
+</script>
+
+</body></html>
